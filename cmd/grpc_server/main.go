@@ -13,7 +13,7 @@ import (
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 
-const grpcPort = 50051
+const grpcPort = 50052
 
 type server struct {
 	desc.UnimplementedChatV1Server
@@ -39,8 +39,8 @@ func (s *server) Delete(ctx context.Context, req *desc.DeleteRequest) (*emptypb.
 
 // SendMessage
 func (s *server) SendMessage(ctx context.Context, req *desc.SendRequest) (*emptypb.Empty, error) {
-	// while there's nothing to delete -> just yield back received info
-	log.Printf("Delete request with: from=%s text=%s timestamp=%v", req.GetFrom(), req.GetText(), req.GetTimestamp())
+	// while there's nothing to send -> just yield back received info
+	log.Printf("SendMessage request with: from=%s text=%s timestamp=%v", req.GetFrom(), req.GetText(), req.GetTimestamp())
 
 	return &emptypb.Empty{}, nil
 }
